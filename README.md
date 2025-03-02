@@ -1,4 +1,4 @@
- <h1>my best big project(lanego application)</h1>
+<h1>my best big project(lanego application)</h1>
 <h2>programed and maintained by <u>eliud Njoroge</u> </h2>
 final phase of lanego project. took 3 months to develop..
 <b>currently working on the web interface that will allow users to access the database from remote servers</b>
