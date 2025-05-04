@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\eliudnjoroo\Desktop\official-lanego-farmers-app\dist\lanego2.jar</jar>
+  <outfile>C:\Users\eliudnjoroo\Desktop\official-lanego-farmers-app\dist\lanego2.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl></downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon></icon>
+  <classPath>
+    <mainClass>login.firstrun </mainClass>
+    <cp>../lib/sqlite-jdbc-3.7.2.jar</cp>
+    <cp>../lib/AbsoluteLayout.jar</cp>
+    <cp>../lib/xchart-3.8.5.jar</cp>
+  </classPath>
+  <jre>
+    <path>../jre</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion>17.0.0</minVersion>
+    <maxVersion></maxVersion>
+  </jre>
+</launch4jConfig>
