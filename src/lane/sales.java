@@ -853,9 +853,9 @@ public class sales extends javax.swing.JFrame {
                 String s1 = rs2.getString(2);
                 String s2 = rs2.getString(3);
                 String s3 = rs2.getString(4);
-                String s4 = rs2.getString(5);
+                String s4_ = rs2.getString(5);
                 String s5 = rs2.getString(6);
-                Object[] obj2 = {s0, s1, s2, s3, s4, s5};
+                Object[] obj2 = {s0, s1, s2, s3, s4_, s5}; 
                 DefaultTableModel model2 = (DefaultTableModel) items_inDB_Tbl.getModel();
                 model2.addRow(obj2);
             }
@@ -1036,8 +1036,8 @@ public class sales extends javax.swing.JFrame {
             SimpleDateFormat form = new SimpleDateFormat("EE   dd / MMMM / Y      h:mm  a");
             String ff = form.format(now);
             String hh = paymentMode_Inpt.getText();
-            state.execute("insert into stockout (item2 ,quantity2 ,quality2,atprice2 ,totalprice2 ,date2 ,state2 ) \n"
-                    + "values(\"" + aa + "\",\"" + bb + "\",\"" + cc + "\", \"" + dd + "\",\n"
+            state.execute("insert into stockout (item2 ,quantity2 ,quality2,atprice2 ,totalprice2 ,date2 ,state2 )"
+                    + "values(\"" + aa + "\",\"" + bb + "\",\"" + cc + "\", \"" + dd + "\","
                     + "\"" + ee + "\", \"" + ff + "\",\"" + hh + "\");");
             ResultSet idOfStockout1 = state.executeQuery("select transid2 from stockout where "
                     + "item2 = \"" + aa + "\" and quantity2 = \"" + bb + "\" and quality2 = \"" + cc + "\" and atprice2 = \"" + dd
@@ -1094,7 +1094,7 @@ public class sales extends javax.swing.JFrame {
             String c = form.format(now);
             java.util.Date now2 = new java.util.Date();
             SimpleDateFormat form1 = new SimpleDateFormat(" h:mm  a ");
-            String d = form1.format(now2);
+            String d1 = form1.format(now2);
             java.util.Date now3 = new java.util.Date();
             SimpleDateFormat form3 = new SimpleDateFormat(" EEEE ");
             String e = form3.format(now3);
@@ -1106,8 +1106,8 @@ public class sales extends javax.swing.JFrame {
             Class.forName("org.sqlite.JDBC");
             con = DriverManager.getConnection("jdbc:sqlite:lng.db");
             state = con.createStatement();
-            state.execute("insert into saleshist (pm ,dt ,tm ,day ,wog ,sb ,cpn ) \n"
-                    + "values(\"" + b + "\",\"" + c + "\",\"" + d + "\", \"" + e + "\",\n"
+            state.execute("insert into saleshist (pm ,dt ,tm ,day ,wog ,sb ,cpn )"
+                    + "values(\"" + b + "\",\"" + c + "\",\"" + d1 + "\", \"" + e + "\",\n"
                     + "\"" + f + "\", \"" + g + "\",\"" + h + "\");");
 
             String aa = grandTotal_inpt.getText();
@@ -1124,11 +1124,11 @@ public class sales extends javax.swing.JFrame {
             java.util.Date now6 = new java.util.Date();
             SimpleDateFormat form6 = new SimpleDateFormat(" Y ");
             String ff = form6.format(now6);
-            Statement state5 = con.createStatement();
-            state5.execute("insert into transhist (ai ,ao , day, tm, month, year) \n"
-                    + "values(\"" + aa + "\",\"" + bb + "\",\"" + e + "\", \"" + dd + "\",\n"
-                    + "\"" + ee + "\", \"" + ff + "\");");
-            state5.close();
+            try (Statement state5 = con.createStatement()) {
+                state5.execute("insert into transhist (ai ,ao , day, tm, month, year) \n"
+                        + "values(\"" + aa + "\",\"" + bb + "\",\"" + e + "\", \"" + dd + "\",\n"
+                                + "\"" + ee + "\", \"" + ff + "\");");
+            }
 
             clear();
             grandTotal_inpt.setText("");
@@ -1305,7 +1305,7 @@ public class sales extends javax.swing.JFrame {
     public void removeFromList() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
         con = DriverManager.getConnection("jdbc:sqlite:lng.db");
-        int newtotals = 0;
+        int newtotals;
         try (Statement remove = con.createStatement()) {
             ResultSet currQuant1 = remove.executeQuery("select quant3 from stocksell where transid3 = " + selectedId + ";");
             int count_inDb = Integer.parseInt((String) currQuant1.getString(1));
